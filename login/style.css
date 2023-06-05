@@ -1,0 +1,23 @@
+/* Mengatur elemen div dengan latar belakang gradasi */
+.gradient-background {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(45deg, #ffa2c9, #f76388, #ff4d97, #fa4eb8, #892fff, #702af1);
+    background-size: 600% 600%;
+    animation: gradientAnimation 15s ease infinite;
+  }
+  
+  /* Animasi gradasi berputar */
+  @keyframes gradientAnimation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  
