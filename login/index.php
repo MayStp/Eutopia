@@ -1,4 +1,11 @@
 <?php 
+session_start();
+
+if(isset($_SESSION["login"])){
+  header("Location: ../index.php");
+  exit;
+}
+
 require 'functions.php';
 
 if(isset($_POST["submit"])){
@@ -11,9 +18,15 @@ if(isset($_POST["submit"])){
     if(mysqli_num_rows($ceklogin) == 1){
         $row = mysqli_fetch_assoc($ceklogin);
         if (password_verify($password, $row["password"]) ){
-          header("Location: ../main/index.php");
+          //set session
+          $_SESSION["login"] = true ;
+
+          header("Location: ../index.php");
+          exit;
         }
     }
+
+    $error = true;
 
 }
 
@@ -32,7 +45,11 @@ if(isset($_POST["submit"])){
 </head>
 <body>
 <!-- Image and text -->
-
+<?php if(isset($error)):?>
+  <script>
+    alert('Password/ Username salah')
+  </script>
+  <?php endif; ?>
 <div class="gradient-background">
 
     <div class="login-container ">
