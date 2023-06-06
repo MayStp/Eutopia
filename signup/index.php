@@ -3,16 +3,13 @@ require 'functions.php';
 
 if(isset($_POST["submit"])){
 
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-
-    $ceklogin = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
-
-    if(mysqli_num_rows($ceklogin) == 1){
-        $row = mysqli_fetch_assoc($ceklogin);
-        if (password_verify($password, $row["password"]) ){
-          header("Location: ../main/index.php");
-        }
+    if( register($_POST) > 0) {
+        echo "<script>
+                alert('user baru ditambahkan!');
+            </script>";
+          header("Location: ../login/index.php");
+    } else {
+        echo mysqli_error($conn);
     }
 
 }
@@ -28,7 +25,7 @@ if(isset($_POST["submit"])){
 <meta name="Description" content="Enter your description here"/>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
 <link rel="stylesheet" href="style.css">
-<title>Login</title>
+<title>SignUp</title>
 </head>
 <body>
 <!-- Image and text -->
@@ -45,7 +42,8 @@ if(isset($_POST["submit"])){
         <form method="POST">
             <input type="text" name="username" id="username" placeholder="Username">
             <input type="password" name="password" id="password" placeholder="Password">
-            <button type="submit" name="submit" class="login-button">Login</button>
+            <input type="password" name="password2" id="password2" placeholder="Confirm Password">
+            <button type="submit" name="submit" class="login-button">Sign Up</button>
         </form>
       </div>
 

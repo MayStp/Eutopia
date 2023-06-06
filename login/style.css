@@ -1,23 +1,109 @@
-/* Mengatur elemen div dengan latar belakang gradasi */
-.gradient-background {
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(45deg, #ffa2c9, #f76388, #ff4d97, #fa4eb8, #892fff, #702af1);
-    background-size: 600% 600%;
-    animation: gradientAnimation 15s ease infinite;
-  }
-  
-  /* Animasi gradasi berputar */
-  @keyframes gradientAnimation {
-    0% {
-      background-position: 0% 50%;
-    }
-    50% {
-      background-position: 100% 50%;
-    }
-    100% {
-      background-position: 0% 50%;
-    }
-  }
+*, html{
+  margin:0; 
+  padding:0;
+  box-sizing: border-box;
+}
 
-  
+
+.gradient-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(45deg, #ff6c73, #ff4d88, #b75fff, #8dafef, #6dcff6, #b86cff);
+  background-size: 600% 600%;
+  animation: gradientAnimation 10s ease infinite;
+}
+
+/* Animasi gradasi berputar */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+
+
+.login-container {
+  max-width: 480px;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 4px;
+  padding: 40px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.login-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.login-header img {
+  width: 140px;
+  display: none;
+}
+
+.login-header h2 {
+  color: #000000;
+  font-size: 32px;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.login-form {
+  margin-bottom: 20px;
+  margin-right: 15px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  color: #000000;
+  background-color: transparent;
+}
+
+.login-button {
+  width: 100%;
+  padding: 16px;
+  margin-right: 15px;
+  border: none;
+  border-radius: 50px;
+  background-color: #c126ff;
+  color: #FFFFFF;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #d784fd;
+}
+
+.login-footer {
+  text-align: center;
+  color: #000000;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #000000;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.login-footer a:hover {
+  color: #c126ff;
+}
