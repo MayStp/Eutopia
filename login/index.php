@@ -2,8 +2,9 @@
 session_start();
 
 if(isset($_SESSION["login"])){
+  
   header("Location: ../index.php");
-  exit;
+
 }
 
 require 'functions.php';
@@ -17,9 +18,10 @@ if(isset($_POST["submit"])){
 
     if(mysqli_num_rows($ceklogin) == 1){
         $row = mysqli_fetch_assoc($ceklogin);
-        if (password_verify($password, $row["password"]) ){
+        if (password_verify($password, $row["password"])){
           //set session
           $_SESSION["login"] = true ;
+          $_SESSION['username'] = $username;
 
           header("Location: ../index.php");
           exit;
@@ -44,7 +46,8 @@ if(isset($_POST["submit"])){
 <title>Login</title>
 </head>
 <body>
-<!-- Image and text -->
+
+
 <?php if(isset($error)):?>
   <script>
     alert('Password/ Username salah')
@@ -62,6 +65,8 @@ if(isset($_POST["submit"])){
         <form method="POST">
             <input type="text" name="username" id="username" placeholder="Username">
             <input type="password" name="password" id="password" placeholder="Password">
+            <a class="askreg" href="../signup/index.php">Belum punya akun? Daftar!</a>
+            <br><br>
             <button type="submit" name="submit" class="login-button">Login</button>
         </form>
       </div>

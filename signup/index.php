@@ -43,6 +43,8 @@ if(isset($_POST["submit"])){
             <input type="text" name="username" id="username" placeholder="Username">
             <input type="password" name="password" id="password" placeholder="Password">
             <input type="password" name="password2" id="password2" placeholder="Confirm Password">
+            <a href="../login/index.php">Sudah punya akun? Login</a>
+            <br><br>
             <button type="submit" name="submit" class="login-button">Sign Up</button>
         </form>
       </div>

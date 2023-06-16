@@ -1,0 +1,80 @@
+body {
+    margin: 0;
+    padding-top: 60px; /* Menambahkan padding agar konten tidak tertutup oleh navbar */
+  }
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999; /* Mengatur z-index agar navbar tampil di atas konten lainnya */
+  }
+  
+  .navbar-left, .navbar-right {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin: 0 10px;
+  }
+  
+  .navbar-center {
+    flex-grow: 1;
+    text-align: center;
+  }
+  
+  .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .search-form input[type="text"] {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+  }
+  
+  .search-form button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #ccc;
+    margin-left: 5px;
+  }
+  
+  /* Responsive */
+  @media screen and (max-width: 600px) {
+    .navbar {
+      flex-direction: column;
+    }
+  
+    .navbar-left, .navbar-right {
+      justify-content: center;
+      margin-top: 10px;
+    }
+  
+    .navbar-center {
+      margin-top: 10px;
+    }
+
+    .avatar {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      margin: 0px;
+    }
+  }
+  
