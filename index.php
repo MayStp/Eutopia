@@ -79,9 +79,9 @@ if(isset($_POST["submit"])){
 <img id="bg" src="assets/bg.png" alt="">
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container d-flex justify-content-between">
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand " href="#">EUTOPIA</a>
         
         <ul class="navbar-nav mx-auto">
             <li class="nav-item">
@@ -117,7 +117,44 @@ if(isset($_POST["submit"])){
     <br><br><br><br>
     
     <div class="container mt-5">  
-    <h1>EUTOPIA</h1>
+    <h1>Selamat datang, <span class="auto-type"></span> </h1>
+    <br>
+
+    <div class="container">
+        <div class="music-image">
+            <div class="image-container">
+                <img src="assets/rumbling.jpg" alt="Music Image">
+                <button class="play-button" aria-label="Play Music">
+                    <i class="set-icon fas fa-solid fa-play "></i>
+                </button>
+                <audio src="songs/Positions.mp3"></audio>
+            </div>
+
+            <div class="image-container">
+                <img src="assets/maroon.jpg" alt="Music Image">
+                <button class="play-button" aria-label="Play Music">
+                    <i class="set-icon fas fa-solid fa-play "></i>
+                </button>
+                <audio src="songs/Positions.mp3"></audio>
+            </div>
+
+            <div class="image-container">
+                <img src="assets/f7.jpg" alt="Music Image">
+                <button class="play-button" aria-label="Play Music">
+                    <i class="set-icon fas fa-solid fa-play "></i>
+                </button>
+                <audio src="songs/Positions.mp3"></audio>
+            </div>
+
+            <div class="image-container">
+                <img src="assets/bmrh.png" alt="Music Image">
+                <button class="play-button" aria-label="Play Music">
+                    <i class="set-icon fas fa-solid fa-play "></i>
+                </button>
+                <audio src="songs/Positions.mp3"></audio>
+            </div>
+        </div>
+    </div>
 
     <!-- SONG LIST  -->
     <h2>Song List</h2>
@@ -156,81 +193,87 @@ if(isset($_POST["submit"])){
                 <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title"><?php echo $playlist['namaplay']; ?></h5>
-                        <button class="btn" onclick="playPlaylist(<?php echo $playlist['id_playlist']; ?>)"><i class="fa-solid fa-play"></i></button>
+                        <button class="btn" onclick="playPlaylist(<?php echo $playlist['namaplay']; ?>)"><i class="fa-solid fa-play"></i></button>
+                        <form action="hapus_play.php" method="POST">
+                            <button class="btn" name="namaplay" value="<?php echo $playlist['namaplay']; ?>"><i class="fa-regular fa-trash-can"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
         <?php endforeach; ?>
     </div>
+            <br><br>
+
     <i class="fa-solid fa-circle-play"></i>
     <i class="fa-solid fa-play"></i>
-    <h2>Create Playlist</h2>
-        <form action="createPlaylist.php" method="POST">
+    <h2 for="playlistName">Create Playlist</h2>
+    <div class="container-createplaylist">
+    <form action="createPlaylist.php" method="POST">
             <div class="mb-3">
-                <label for="playlistName" class="form-label">Playlist Name</label>
-                <input type="text" class="form-control" id="playlistName" name="playlistName" required>
+                <input type="text" class="form-control" id="playlistName" name="playlistName" required placeholder="Nama playlist">
             </div>
             <button type="submit" value="submit" class="btns"><i class="fa-solid fa-circle-plus fa-2xl"></i></button>
-            
         </form>
-
-
-    
-    
-    
-    <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
-        <div class="offcanvas-header">
-            <!-- <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5> -->
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" ></button>
-        </div>
-        <div class="offcanvas-body small">
-        <div class="player">
- 
- <!-- Define the section for displaying details -->
- <div class="details">
-   <div class="track-name">Track Name</div>
-   <div class="track-artist">Track Artist</div>
- </div>
-
- <!-- Define the section for displaying track buttons -->
- <div class="buttons">
-   <div class="prev-track" onclick="prevTrack()">
-     <i class="fa fa-step-backward fa-2x"></i>
-   </div>
-   <div class="playpause-track" onclick="playpauseTrack()">
-     <i class="fa fa-play-circle fa-5x"></i>
-   </div>
-   <div class="next-track" onclick="nextTrack()">
-     <i class="fa fa-step-forward fa-2x"></i>
-   </div>
- </div>
-
- <!-- Define the section for displaying the seek slider-->
- <div class="slider_container">
-   <div class="current-time">00:00</div>
-   <input type="range" min="1" max="100"
-     value="0" class="seek_slider" onchange="seekTo()">
-   <div class="total-duration">00:00</div>
- </div>
-
- <!-- Define the section for displaying the volume slider-->
- <div class="slider_container">
-   <i class="fa fa-volume-down"></i>
-   <input type="range" min="1" max="100"
-     value="99" class="volume_slider" onchange="setVolume()">
-   <i class="fa fa-volume-up"></i>
- </div>
-</div>
-
-        </div>
     </div>
+    <br><br><br>
+        
+
+
     
-    <div id="player"></div>
-</div>
+        <div class="floating-navbar">
+        <div class="player">
+                    <!-- Define the section for displaying details -->
+                    <div class="details">
+                    <div class="track-name">Track Name</div>
+                    <div class="track-artist">Track Artist</div>
+                    </div>
 
-
+                    <!-- Define the section for displaying track buttons -->
+                    <div class="buttons">
+                    <div class="play-track" onclick="PlayAudio2()">
+                    <button><i class="fa-solid fa-play fa-2x"></i></button>    
+                    </div>
+                    <div class="pause-track" onclick="pauseAudio()">
+                    <i class="fa-solid fa-pause fa-2x"></i>
+                    </div>
+                    </div>
+                    <!-- Define the section for displaying the seek slider-->
+                    <div class="slider_container">
+                    <div class="current-time">00:00</div>
+                    <input type="range" min="1" max="100"
+                        value="0" class="seek_slider" onchange="seekTo()">
+                    <div class="total-duration">00:00</div>
+                    </div>
+                    <!-- Define the section for displaying the volume slider-->
+                    <div class="slider_container">
+                    <i class="fa fa-volume-down"></i> 
+                    <input class="volume-slider" type="range" min="0" max="100" value="100" class="volume-slider" onchange="setVolume(this.value)">
+                    <i class="fa fa-volume-up"></i>
+                    </div>
+                    
+        </div>
+        <div id="player"></div>
+        </div>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+        <?php
+            $userId = $_SESSION["username"];
+
+            echo "var userId = '" . $userId . "';";
+        ?>
+
+        var typed = new Typed(".auto-type", {
+            strings: [userId, "Eutopian"],
+            typeSpeed: 150,
+            backSpeed: 150,
+            loop: true
+        });
+
+    
+    </script>
+
     <script src="script.js" ></script>
 
 </body>

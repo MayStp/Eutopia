@@ -1,0 +1,101 @@
+Tentu! Berikut adalah contoh kode SQL yang melengkapi persyaratan yang Anda sebutkan:
+
+Contoh Query Complex:
+Query 1: Mengambil daftar lagu berdasarkan artis tertentu menggunakan JOIN:
+
+sql
+Copy code
+SELECT lagu.judul_lagu, artis.nama_artis
+FROM lagu
+JOIN artis ON lagu.id_artis = artis.id_artis
+WHERE artis.nama_artis = 'Nama Artis';
+Query 2: Mengambil daftar playlist dan jumlah lagu di setiap playlist menggunakan subquery:
+
+sql
+Copy code
+SELECT p.nama_playlist, (SELECT COUNT(*) FROM lagu_playlist WHERE id_playlist = p.id_playlist) AS jumlah_lagu
+FROM playlist p;
+Query 3: Mengambil daftar lagu yang termasuk dalam beberapa genre menggunakan IN:
+
+sql
+Copy code
+SELECT lagu.judul_lagu, genre.nama_genre
+FROM lagu
+JOIN genre ON lagu.id_genre = genre.id_genre
+WHERE genre.nama_genre IN ('Genre A', 'Genre B');
+Contoh View:
+View 1: Melihat daftar lagu dalam playlist:
+
+sql
+Copy code
+CREATE VIEW view_daftar_lagu_playlist AS
+SELECT p.nama_playlist, l.judul_lagu, l.durasi
+FROM playlist p
+JOIN lagu_playlist lp ON p.id_playlist = lp.id_playlist
+JOIN lagu l ON lp.id_lagu = l.id_lagu;
+View 2: Melihat daftar lagu dalam queue:
+
+sql
+Copy code
+CREATE VIEW view_daftar_lagu_queue AS
+SELECT q.id_queue, l.judul_lagu, l.durasi
+FROM queue q
+JOIN lagu l ON q.id_lagu = l.id_lagu;
+Contoh Fungsi:
+Fungsi 1: Menghitung jumlah lagu dalam playlist:
+
+sql
+Copy code
+CREATE FUNCTION hitung_jumlah_lagu_playlist(playlist_id INT) RETURNS INT
+BEGIN
+    DECLARE jumlah_lagu INT;
+    SELECT COUNT(*) INTO jumlah_lagu
+    FROM lagu_playlist
+    WHERE id_playlist = playlist_id;
+    
+    RETURN jumlah_lagu;
+END;
+Contoh Prosedur:
+Prosedur 1: Menambahkan lagu ke playlist:
+
+sql
+Copy code
+CREATE PROCEDURE tambah_lagu_ke_playlist(
+    lagu_id INT,
+    playlist_id INT
+)
+BEGIN
+    INSERT INTO lagu_playlist (id_lagu, id_playlist)
+    VALUES (lagu_id, playlist_id);
+END;
+Contoh Trigger:
+Trigger 1: Mengupdate total durasi playlist saat lagu ditambahkan:
+
+sql
+Copy code
+CREATE TRIGGER update_durasi_playlist
+AFTER INSERT ON lagu_playlist
+FOR EACH ROW
+BEGIN
+    DECLARE total_durasi INT;
+    SELECT SUM(l.durasi) INTO total_durasi
+    FROM lagu_playlist lp
+    JOIN lagu l ON lp.id_lagu = l.id_lagu
+    WHERE lp.id_playlist = NEW.id_playlist;
+
+    UPDATE playlist
+    SET total_durasi = total_durasi
+    WHERE id_playlist = NEW.id_playlist;
+END;
+Trigger 2: Menghapus lagu dari queue saat lagu dihapus dari tabel lagu:
+
+sql
+Copy code
+CREATE TRIGGER hapus_lagu_queue
+AFTER DELETE ON lagu
+FOR EACH ROW
+BEGIN
+    DELETE FROM queue
+    WHERE id_lagu = OLD.id_lagu;
+END;
+Anda dapat menyesuaikan kode SQL ini dengan struktur tabel dan kebutuhan aplikasi Anda. Pastikan untuk mengganti nama tabel dan kolom dengan nama yang sesuai dengan struktur tabel Anda.

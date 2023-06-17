@@ -20,12 +20,62 @@ body {
 
 nav{
   font-family: 'Oxygen', sans-serif;
+  background: linear-gradient(to bottom, rgb(43, 43, 43), rgba(0, 0, 0, 0.1));
+  backdrop-filter: blur(5px);
+  color: white;
 }
 
-.offcanvas-backdrop {
-    background-color: rgba(0, 0, 0, 0.5); /* Ubah nilai alpha (0.5) sesuai kebutuhan Anda */
-  }
-  
+#profileDropdown{
+
+  color: white;
+}
+.nav-link{
+  font-family: 'Oxygen', sans-serif;
+  color: white;
+}
+.nav-link:hover{
+  font-family: 'Oxygen', sans-serif;
+  color: #fffb00;
+}
+
+.navbar-brand{
+  font-family: 'Oxygen', sans-serif;
+  color: white;
+}
+.navbar-brand:hover{
+  font-family: 'Oxygen', sans-serif;
+  color: #fffb00;
+}
+
+.floating-navbar {
+  /* position: fixed; */
+  border-radius: 10px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 999;
+  /* Gaya lain yang Anda inginkan untuk navbar */
+}
+
+.container-createplaylist {
+  display: flex;
+  align-items: center;
+}
+
+.container-createplaylist form {
+  display: flex;
+  align-items: center;
+  width: 500px;
+}
+
+.container-createplaylist .mb-3 {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
 
 ::-webkit-scrollbar {
     width: 8px;
@@ -55,8 +105,16 @@ h1,h2 {
 }
 
 
-
-
+.card{
+  background-color: rgba(0, 255, 255, 0);
+  border-color: #ffffff;
+  color: white;
+}
+.card-body{
+ background-color: rgba(0, 255, 255, 0);
+ display: flex;
+ align-items: center;
+}
 
 .content {
     height: 200vh;
@@ -65,7 +123,7 @@ h1,h2 {
 
 .btn {
     /* background-color: #007bff; */
-    color: #000000;
+    color: #fffb00;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
@@ -83,7 +141,7 @@ h1,h2 {
 
   .btn :hover{
     /* background-color: #007bff; */
-    color: #ff0000;
+    color: #ffffff;
     
   }
 
@@ -98,8 +156,9 @@ h1,h2 {
 .player {
     display: flex;
     align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
+    height: 90px;
   }
    
   .details {
@@ -107,20 +166,21 @@ h1,h2 {
     align-items: center;
     flex-direction: column;
     justify-content: center;
+    padding: 30px;
 
   }
 
   /* Changing the font sizes to suitable ones */
   .now-playing {
-    font-size: 1rem;
+    
   }
    
   .track-name {
-    font-size: 3rem;
+   padding: 5px;
   }
    
   .track-artist {
-    font-size: 1.5rem;
+    
   }
    
   /* Using flex with the row direction to
@@ -131,12 +191,16 @@ h1,h2 {
     align-items: center;
   }
    
-  .playpause-track,
-  .prev-track,
-  .next-track {
-    padding: 25px;
+  .play-track{
+    padding: 15px;
     opacity: 0.8;
-   
+    /* Smoothly transition the opacity */
+    transition: opacity .2s;
+  }
+
+  .pause-track{
+    padding: 20px;
+    opacity: 0.8;
     /* Smoothly transition the opacity */
     transition: opacity .2s;
   }
@@ -150,7 +214,7 @@ h1,h2 {
    
   /* Define the slider width so that it scales properly */
   .slider_container {
-    width: 75%;
+    /* width: 75%; */
     max-width: 400px;
     display: flex;
     justify-content: center;
@@ -175,8 +239,8 @@ h1,h2 {
     -webkit-appearance: none;
     -moz-appearance: none;
     appearance: none;
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 10px;
     background: white;
     cursor: pointer;
     border-radius: 50%;
@@ -198,12 +262,12 @@ h1,h2 {
    
   .current-time,
   .total-duration {
-    padding: 10px;
+    padding: 15px;
   }
    
   i.fa-volume-down,
   i.fa-volume-up {
-    padding: 10px;
+    
   }
    
   /* Change the mouse cursor to a pointer
@@ -214,3 +278,66 @@ h1,h2 {
   i.fa-step-backward {
     cursor: pointer;
   }
+/* -------------------------------------------------------------------------------------------------------------- */
+.music-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.music-image .image-container {
+  position: relative;
+  display: inline-block;
+  margin-right: 10px; 
+}
+.music-image .image-container img {
+  filter: brightness(0.7);
+  transition: filter 0.3s;
+}
+.music-image .image-container img :hover {
+  filter: brightness(0.7);
+}
+
+.music-image .image-container:hover img {
+  filter: brightness(0.7);
+}
+
+.music-image .image-container .play-button::before {
+  filter: brightness(1.5);
+  transition: filter 0.3s;
+}
+
+.music-image .image-container:hover .play-button::before {
+  filter: brightness(0.7);
+}
+
+.music-image .image-container img {
+  width: 254px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.music-image .image-container .fa-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 200%;
+  color: rgb(255, 255, 255);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.music-image .image-container:hover .fa-play {
+  opacity: 1;
+  color: #ffffff;
+}
+
+.play-button {
+  border: none;
+  background-color: rgb(0, 0, 0, 0);
+}
+
+

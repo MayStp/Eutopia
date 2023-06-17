@@ -41,9 +41,21 @@ if (isset($_GET["query"])) {
     <title>Search Results</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <script src="https://kit.fontawesome.com/ebaf338085.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<a href="../index.php"> <i class="fa-solid fa-angles-left"></i> </a>
+
+<video autoplay muted loop id="myVideo">
+    <source src="assets/bgg.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+
+
+<a href="../index.php" class="lempar" >
+    <button class="baten" >
+    <i class="fa-solid fa-house fa-3x" style="color: #ffffff;"></i>
+    </button>
+</a>
 <div class="container mt-5">
     <h1>Hasil pencarian...</h1>
     <p>Showing search results for: <?php echo $query; ?></p>

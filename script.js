@@ -1,54 +1,63 @@
-function playAudio(songId) {
-    var audio = new Audio(songId);
-    audio.play();
-    
-    var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
-    offcanvas.show();
+let isPlaying = false;
+let currentAudioUrl = '';
+
+// Variabel global untuk menyimpan elemen audio
+let audioElement;
+
+// Inisialisasi audio saat halaman dimuat
+window.addEventListener('DOMContentLoaded', function() {
+  audioElement = new Audio();
+});
+
+// Fungsi untuk memutar audio
+function playAudio(audioUrl) {
+	if (isPlaying && currentAudioUrl === audioUrl) {
+	  // Lagu sedang diputar, lanjutkan pemutaran
+	  audioElement.play();
+	} else {
+	  // Lagu baru, mulai pemutaran dari awal
+	  currentAudioUrl = audioUrl;
+	  audioElement.src = audioUrl;
+	  audioElement.play();
+	  isPlaying = true;
+
+	}
+}
+playAudio2();
+
+// Fungsi untuk memperbarui tampilan tombol play di komponen kedua
+function playAudio2() {
+	const playButton = document.querySelector('.play-track');
+	if (isPlaying) {
+	  playButton.innerHTML = '<i class="fa-solid fa-pause fa-2x"></i>';
+	} else {
+	  playButton.innerHTML = '<i class="fa-solid fa-play fa-2x"></i>';
+	}
+  }
+  
+  // Fungsi untuk menghentikan audio dan memperbarui status pemutaran
+  function pauseAudio() {
+	audioElement.pause();
+	isPlaying = false;
+	playAudio2();
+  }
+
+// Fungsi untuk menghentikan audio
+function pauseAudio() {
+  audioElement.pause();
 }
 
-// Select all the elements in the HTML page
-// and assign them to a variable
-let now_playing = document.querySelector(".now-playing");
-let track_art = document.querySelector(".track-art");
-let track_name = document.querySelector(".track-name");
-let track_artist = document.querySelector(".track-artist");
+// Fungsi untuk mengatur nilai volume pada audio
+function setVolume(value) {
+  audioElement.volume = value / 100;
+}
 
-let playpause_btn = document.querySelector(".playpause-track");
-let next_btn = document.querySelector(".next-track");
-let prev_btn = document.querySelector(".prev-track");
-
-let seek_slider = document.querySelector(".seek_slider");
-let volume_slider = document.querySelector(".volume_slider");
-let curr_time = document.querySelector(".current-time");
-let total_duration = document.querySelector(".total-duration");
-
-// Specify globally used values
-let track_index = 0;
-let isPlaying = false;
-let updateTimer;
-
-// Create the audio element for the player
-let curr_track = document.createElement('audio');
-
-// Define the list of tracks that have to be played
-let track_list = [
-{
-	name: "Night Owl",
-	artist: "Broke For Free",
-	image: "Image URL",
-	path: "Night_Owl.mp3"
-},
-{
-	name: "Enthusiast",
-	artist: "Tours",
-	image: "Image URL",
-	path: "Enthusiast.mp3"
-},
-{
-	name: "Shipping Lanes",
-	artist: "Chad Crouch",
-	image: "Image URL",
-	path: "Shipping_Lanes.mp3",
-},
-];
-
+window.addEventListener('scroll', function() {
+	const navbar = document.querySelector('.floating-navbar');
+	if (window.scrollY > 0) {
+	  navbar.classList.add('show');
+	} else {
+	  navbar.classList.remove('show');
+	}
+  });
+  

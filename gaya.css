@@ -78,3 +78,33 @@ body {
     }
   }
   
+  .music-image {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .music-image img {
+    width: 100px;
+    height: auto;
+    object-fit: cover;
+  }
+  
+  .music-image .fa-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 200%;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .music-image:hover .fa-play {
+    opacity: 1;
+  }
+  
+  .play-button{
+    border: none;
+    background-color: rgb(0, 0, 0,0);
+  }
