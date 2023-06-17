@@ -1,12 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;900&family=Poppins:wght@700;900&family=Russo+One&display=swap');
 
-html{
-    background-color: #000000;
-}
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;900&family=Oxygen:wght@700&family=Poppins:wght@700;900&family=Russo+One&display=swap');
+
+
+
 body {
-    background-color: #000000;
-    color: rgb(255, 25, 0);
+    color: white;
 }
+
+#bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+
+nav{
+  font-family: 'Oxygen', sans-serif;
+}
+
+.offcanvas-backdrop {
+    background-color: rgba(0, 0, 0, 0.5); /* Ubah nilai alpha (0.5) sesuai kebutuhan Anda */
+  }
+  
+
 ::-webkit-scrollbar {
     width: 8px;
 }
@@ -30,6 +50,13 @@ body {
     scrollbar-color: #888 #f1f1f1;
 }
 
+h1,h2 {
+  color: #fffb00;
+}
+
+
+
+
 
 .content {
     height: 200vh;
@@ -45,8 +72,145 @@ body {
     font-size: 16px;
   }
 
+.btns {
+    background-color: rgba(0, 0, 0, 0);
+    color: #fffb00;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+
   .btn :hover{
     /* background-color: #007bff; */
     color: #ff0000;
     
+  }
+
+  .navbar-nav {
+    flex-direction: row;
+}
+
+.navbar-nav .nav-link {
+    padding: 0.5rem 1rem;
+}
+
+.player {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+   
+  .details {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+
+  }
+
+  /* Changing the font sizes to suitable ones */
+  .now-playing {
+    font-size: 1rem;
+  }
+   
+  .track-name {
+    font-size: 3rem;
+  }
+   
+  .track-artist {
+    font-size: 1.5rem;
+  }
+   
+  /* Using flex with the row direction to
+     align items in a horizontal direction */
+  .buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+   
+  .playpause-track,
+  .prev-track,
+  .next-track {
+    padding: 25px;
+    opacity: 0.8;
+   
+    /* Smoothly transition the opacity */
+    transition: opacity .2s;
+  }
+   
+  /* Change the opacity when mouse is hovered */
+  .playpause-track:hover,
+  .prev-track:hover,
+  .next-track:hover {
+    opacity: 1.0;
+  }
+   
+  /* Define the slider width so that it scales properly */
+  .slider_container {
+    width: 75%;
+    max-width: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+   
+  /* Modify the appearance of the slider */
+  .seek_slider, .volume_slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    height: 5px;
+    background: black;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+  }
+   
+  /* Modify the appearance of the slider thumb */
+  .seek_slider::-webkit-slider-thumb,
+  .volume_slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    background: white;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+   
+  /* Change the opacity when mouse is hovered */
+  .seek_slider:hover,
+  .volume_slider:hover {
+    opacity: 1.0;
+  }
+   
+  .seek_slider {
+    width: 60%;
+  }
+   
+  .volume_slider {
+    width: 30%;
+  }
+   
+  .current-time,
+  .total-duration {
+    padding: 10px;
+  }
+   
+  i.fa-volume-down,
+  i.fa-volume-up {
+    padding: 10px;
+  }
+   
+  /* Change the mouse cursor to a pointer
+     when hovered over */
+  i.fa-play-circle,
+  i.fa-pause-circle,
+  i.fa-step-forward,
+  i.fa-step-backward {
+    cursor: pointer;
   }

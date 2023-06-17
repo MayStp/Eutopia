@@ -1,0 +1,61 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+  }
+
+  .content {
+    width: 100vw;
+    background-color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* margin-top: 20px; */
+  }
+
+  .search-container {
+    display: flex;
+    align-items: center;
+    max-width: 400px;
+    width: 700px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  .search-container .form-control {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  .search-container .btn {
+    flex-shrink: 0;
+  }
+
+  #myVideo {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+  }
+
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }

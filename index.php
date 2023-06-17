@@ -59,9 +59,6 @@ if(isset($_POST["submit"])){
 }
 ?>
 
-function
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -79,30 +76,45 @@ function
 </head>
 <body>
 
+<img id="bg" src="assets/bg.png" alt="">
+
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">Logo</a>
-            <a href="logout.php">Logout</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menu 1</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menu 2</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Menu 3</a>
-                    </li>
+    <div class="container d-flex justify-content-between">
+        <a class="navbar-brand" href="#">Logo</a>
+        
+        <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Beranda</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="search/index.php">Telusuri</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Genre</a>
+            </li>
+        </ul>
+        
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="assets/bear.png" class="rounded-circle" alt="Profile Picture" style="width: 40px; height: 40px;">
+                </a>
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="logout.php">Logout</a></li>
                 </ul>
-            </div>
-        </div>
-    </nav>
-    <br><br>
+            </li>
+        </ul>
+        
+    </div>
+</nav>
+
+
+
+    <br><br><br><br>
     
     <div class="container mt-5">  
     <h1>EUTOPIA</h1>
@@ -116,7 +128,7 @@ function
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="card-title"><?php echo $song['judul_lagu']; ?></h5>
-                        <button class="btn ml-auto" onclick="playAudio('<?php echo $song['id_lagu']; ?>'+'.mp3')">
+                        <button class="btn ml-auto" onclick="playAudio('songs/'+'<?php echo $song['id_lagu']; ?>'+'.mp3')">
                         <img src="https://icons8.com/icon/fKjdxWYsIQbi/play" alt="">
                         <i class="fa-solid fa-play"></i>
                         </button>
@@ -158,26 +170,58 @@ function
                 <label for="playlistName" class="form-label">Playlist Name</label>
                 <input type="text" class="form-control" id="playlistName" name="playlistName" required>
             </div>
-            <button type="submit" value="submit" class="btn btn-primary">Create Playlist</button>
+            <button type="submit" value="submit" class="btns"><i class="fa-solid fa-circle-plus fa-2xl"></i></button>
+            
         </form>
 
 
     
-    <h2>Search Song</h2>
-    <form action="search.php" method="GET">
-        <div class="input-group mb-3">
-            <input type="text" class="form-control" name="query" placeholder="Search..." required="">
-            <button type="submit" class="btn btn-primary">Search</button>
-        </div>
-    </form>
+    
     
     <div class="offcanvas offcanvas-bottom" tabindex="-1" id="offcanvasBottom" aria-labelledby="offcanvasBottomLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <!-- <h5 class="offcanvas-title" id="offcanvasBottomLabel">Offcanvas bottom</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" ></button>
         </div>
         <div class="offcanvas-body small">
-            ...
+        <div class="player">
+ 
+ <!-- Define the section for displaying details -->
+ <div class="details">
+   <div class="track-name">Track Name</div>
+   <div class="track-artist">Track Artist</div>
+ </div>
+
+ <!-- Define the section for displaying track buttons -->
+ <div class="buttons">
+   <div class="prev-track" onclick="prevTrack()">
+     <i class="fa fa-step-backward fa-2x"></i>
+   </div>
+   <div class="playpause-track" onclick="playpauseTrack()">
+     <i class="fa fa-play-circle fa-5x"></i>
+   </div>
+   <div class="next-track" onclick="nextTrack()">
+     <i class="fa fa-step-forward fa-2x"></i>
+   </div>
+ </div>
+
+ <!-- Define the section for displaying the seek slider-->
+ <div class="slider_container">
+   <div class="current-time">00:00</div>
+   <input type="range" min="1" max="100"
+     value="0" class="seek_slider" onchange="seekTo()">
+   <div class="total-duration">00:00</div>
+ </div>
+
+ <!-- Define the section for displaying the volume slider-->
+ <div class="slider_container">
+   <i class="fa fa-volume-down"></i>
+   <input type="range" min="1" max="100"
+     value="99" class="volume_slider" onchange="setVolume()">
+   <i class="fa fa-volume-up"></i>
+ </div>
+</div>
+
         </div>
     </div>
     
@@ -187,20 +231,7 @@ function
 
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function playAudio(songId) {
-            var audio = new Audio(songId);
-            audio.play();
-            
-            var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
-            offcanvas.show();
-        }
+    <script src="script.js" ></script>
 
-        // function addToPlaylist(songId) {
-        //     var offcanvas = new bootstrap.Offcanvas(document.getElementById('offcanvasBottom'));
-        //     offcanvas.show();
-        // }
-        
-    </script>
 </body>
 </html>
